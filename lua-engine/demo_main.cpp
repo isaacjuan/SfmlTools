@@ -1,10 +1,10 @@
-// demo_main.cpp — proves SfmlLuaEngine compiles and runs standalone, with
+// demo_main.cpp - proves SfmlLuaEngine compiles and runs standalone, with
 // zero ObjectARX/AutoCAD in the link, exposing a toy domain API instead of
-// LuaTools' CAD-drawing `at` table. Not a unit test framework — a runnable
+// LuaTools' CAD-drawing `at` table. Not a unit test framework - a runnable
 // sanity check with three cases:
-//   1. happy path   — script calls the host API, host mutates its own model
-//   2. sandboxing   — script tries os.execute(), must fail (stdlib absent)
-//   3. runtime error — script errors mid-run, must surface via result.error
+//   1. happy path   - script calls the host API, host mutates its own model
+//   2. sandboxing   - script tries os.execute(), must fail (stdlib absent)
+//   3. runtime error - script errors mid-run, must surface via result.error
 //
 // Build/run: see README.md in this directory.
 
@@ -13,7 +13,7 @@
 #include <vector>
 #include <string>
 
-// ── Toy host model — stands in for whatever SFML's C++ engine actually
+// ── Toy host model - stands in for whatever SFML's C++ engine actually
 // tracks (Members/Connections). Lives entirely outside the Lua engine file;
 // the engine never needs to know this struct exists.
 struct DemoModel
@@ -23,7 +23,7 @@ struct DemoModel
 };
 
 // ── Host API functions exposed to Lua as the `sfml` table.
-// Each retrieves the DemoModel* via SfmlLua::HostData(L) — the engine
+// Each retrieves the DemoModel* via SfmlLua::HostData(L) - the engine
 // forwards whatever opaque pointer runScript() was given.
 
 static int api_defineMember(lua_State* L)
@@ -77,10 +77,10 @@ int main()
         "print('defined members at indices', i1, i2)\n"
         "print('total members:', sfml.memberCount())\n");
 
-    runCase("2. sandboxing (expect failure — os is not available)",
+    runCase("2. sandboxing (expect failure - os is not available)",
         "os.execute('echo should not run')\n");
 
-    runCase("3. runtime error (expect failure — bad argument type)",
+    runCase("3. runtime error (expect failure - bad argument type)",
         "sfml.defineMember('beam_c', 'not-a-number')\n");
 
     return 0;

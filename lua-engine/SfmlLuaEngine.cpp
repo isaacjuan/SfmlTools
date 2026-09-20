@@ -3,7 +3,7 @@
 namespace SfmlLua {
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Per-run context — the direct analog of LuaTools.cpp's anonymous-namespace
+// Per-run context - the direct analog of LuaTools.cpp's anonymous-namespace
 // LuaCtx, generalized with an opaque hostData pointer so this file has no
 // knowledge of what the host actually does.
 // ─────────────────────────────────────────────────────────────────────────────
@@ -20,7 +20,7 @@ RunContext* ctxFrom(lua_State* L)
     return static_cast<RunContext*>(lua_touserdata(L, lua_upvalueindex(1)));
 }
 
-// Overridden global print(...) — captures into the run's output buffer
+// Overridden global print(...) - captures into the run's output buffer
 // instead of writing to a (nonexistent, in an embedded context) console.
 // Uses luaL_tolstring so it matches stock print()'s __tostring-aware
 // formatting, same as LuaTools::lua_print_override.
